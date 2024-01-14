@@ -2,18 +2,18 @@ void main() {
   String originalString = "samplestring";
   String substring = "l";
 
-  int count = countCharsAfterCharToEnd(originalString, substring);
+  String count = countCharsAfterCharToEnd(originalString, substring);
 
-  print("Number of characters from '$substring' to the end: $count");
+  print(count);
 }
 
-int countCharsAfterCharToEnd(String str, String cha) {
+String countCharsAfterCharToEnd(String str, String cha) {
   int substringIndex = str.indexOf(cha);
 
   if (substringIndex == -1) {
-    return 0;
+    return '';
   }
 
   String remainingSubstring = str.substring(substringIndex + 1);
-  return remainingSubstring.length;
+  return remainingSubstring;
 }

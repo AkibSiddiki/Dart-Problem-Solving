@@ -1,27 +1,36 @@
 void main() {
-  print(Solution().lengthOfLongestSubstring('jbpnbwwd'));
+  print(Solution().lengthOfLongestSubstring('abcdabccabcdxcd'));
 }
 
 class Solution {
   int lengthOfLongestSubstring(String s) {
+    String string = s;
     String subString = '';
     int lenght = 0;
-    int last_split_index = 0;
-    for (int i = 0; i < s.length; i++) {
-      if (subString.contains(s[i])) {
+    for (int i = 0; i < string.length; i++) {
+      if (subString.contains(string[i])) {
         if (lenght <= subString.length) {
           lenght = subString.length;
-          last_split_index = subString.indexOf(s[i]) + last_split_index;
-          i = last_split_index;
-          subString = '';
         }
+        subString = strTrim(subString, string[i]);
+        subString = subString + '${string[i]}';
       } else {
-        subString += s[i];
+        subString += string[i];
       }
-      print(subString);
     }
 
     lenght = lenght < subString.length ? subString.length : lenght;
     return lenght;
+  }
+
+  String strTrim(String str, String cha) {
+    int substringIndex = str.indexOf(cha);
+
+    if (substringIndex == -1) {
+      return '';
+    }
+
+    String remainingSubstring = str.substring(substringIndex + 1);
+    return remainingSubstring;
   }
 }
