@@ -1,36 +1,41 @@
 void main() {
-  Solution().countPalindromicSubsequence('bbcbaba');
+  print(Solution().countPalindromicSubsequence('bbcbabaa'));
 }
 
 class Solution {
   int countPalindromicSubsequence(String s) {
-    var mapChar = <String, int>{};
-    int p = 0;
-    int g = 0;
-    int r = 0;
+    List<String> subsequenceList = [];
+    List<String> charList = [];
 
     for (int i = 0; i < s.length; i++) {
-      mapChar[s[i]] = (mapChar[s[i]] ?? 0) + 1;
-    }
-
-    for (var entry in mapChar.entries) {
-      int value = entry.value;
-      if ((value - 2) == 0) {
-        g += 1;
-      } else if ((value - 2) > 0) {
-        g += 1;
-        p += value - 2;
-      } else {
-        p += 1;
+      for (int j = i + 1; j < s.length; j++) {
+        if ((i + 1) == j || s[j] != s[i]) {
+          charList.add(s[j]);
+        } else {
+          if ((j + 1) == s.length) {
+            for (String char in charList) {
+              print(s[i] + char + s[j]);
+              if (!subsequenceList.contains(s[i] + char + s[j])) {
+                subsequenceList.add(s[i] + char + s[j]);
+              }
+            }
+            charList.clear();
+          } else if (s[i] != s[j + 1]) {
+            for (String char in charList) {
+              if (!subsequenceList.contains(s[i] + char + s[j])) {
+                subsequenceList.add(s[i] + char + s[j]);
+              }
+            }
+            charList.clear();
+          } else {
+            charList.add(s[j]);
+          }
+        }
       }
+      charList.clear();
     }
 
-    r = (p + (g % 2));
-
-    print("G : $g");
-    print("P : $p");
-    print("R : $r");
-
-    return r;
+    print(subsequenceList);
+    return subsequenceList.length;
   }
 }
