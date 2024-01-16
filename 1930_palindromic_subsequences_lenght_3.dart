@@ -1,5 +1,6 @@
 void main() {
-  print(Solution().countPalindromicSubsequence('bbcbabaa'));
+  print(Solution().countPalindromicSubsequence(
+      'dyawwfblfupdznpnefytjzkfcnmnyajkzcjibyqfsqvwazsxbweandmbpfthqvkendvrjyuafkjvqaaamtdkotsecjfkbzmkxlwvamxgioyrcmvodnudrtshpggshsmpnzgxijdtwtuquzaqvgkamwewzkzlgltrnizeiwulcwtgulaoczvdsdjloyzzevxndruftnuonbnoszeerqwfysoylfbzkknkmishbsrftpbtdmezzzkekpgjfydksprfdhiqnnupglvopdwtswybvgqleswmhnctywgwmslbcuvtxqirgjasmpflgzvmpopwrbcvqcczgpspvsbqllwakutlxfeqihkalxjrjzhuisqteowqttuemcjnuzihxckqqtfwmiljeeaeinqhoeqbcsxrwdijdkvtwupzifvgezafsfwlvdhzwmlozeenkoxkgujuljygocsivsupcxzsncvfjszvfgvllpbzalqxmsbjyhgxapltdkrishgunktzpwzbtpubbkefzuzvaysicksrujmweielgcgfjqc'));
 }
 
 class Solution {
@@ -14,7 +15,6 @@ class Solution {
         } else {
           if ((j + 1) == s.length) {
             for (String char in charList) {
-              print(s[i] + char + s[j]);
               if (!subsequenceList.contains(s[i] + char + s[j])) {
                 subsequenceList.add(s[i] + char + s[j]);
               }
@@ -27,6 +27,7 @@ class Solution {
               }
             }
             charList.clear();
+            charList.add(s[j]);
           } else {
             charList.add(s[j]);
           }
@@ -35,7 +36,7 @@ class Solution {
       charList.clear();
     }
 
-    print(subsequenceList);
+    // print(subsequenceList);
     return subsequenceList.length;
   }
 }
